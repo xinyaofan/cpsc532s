@@ -10,4 +10,7 @@ tutorial
 
 #machine learning oop implementation
 
+1. logistic regression 
+https://midi-title-c71.notion.site/logistic-regression-8e78a580911646b188907cfa465d92cf
+
 
