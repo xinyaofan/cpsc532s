@@ -1,0 +1,290 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{url}
+
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkClass\ : \hmwkTitle} % Top left header
+\chead{} % Top center head
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{Perl} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=Perl, % Use Perl in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+% Creates a new command to include a perl script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\perlscript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.pl}
+\end{itemize}
+}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Assignment\ \#1} % Assignment title
+\newcommand{\hmwkDueDate}{Tuesday,\ September\ 20,\ 2021 at 11:59pm PST} % Due date
+\newcommand{\hmwkClass}{Topics in Artificial Intelligence (CPSC 532S)} % Course/class
+\newcommand{\hmwkClassTime}{11:00am} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Jones} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{John Smith} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+}
+
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+\vspace{-0.2in}
+In this assignment you will get hands on experience with the basic operations, processing and inner-workings 
+of traditional deep learning libraries. There are many deep learning libraries that allow easy creation of complex 
+neural network architectures. In future assignments, for example, we will use {\bf PyTorch} to do this (other popular 
+ones are Keras, TensorFlow and Theano). However, those libraries in an interest of “ease of use” often abstract 
+a lot of detail. The basics learned in this assignment will give you hands on experience on how they work “under 
+the hood” and give you skills necessary to implement new types of layers and whole architectures (if necessary) 
+and to think through corresponding algorithmic and computational issues. 
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+% To have just one problem per page, simply put a \clearpage after each problem
+
+\begin{homeworkProblem}[Problem 1 (40 points)]
+The key to learning in deep neural networks is ability to compute the derivative of a vector function $\mathbf{f}$ with respect 
+to the parameters of the deep neural network. Computing such derivatives as closed-form expressions for complex 
+functions $\mathbf{f}$ is difficult and computationally expensive. Therefore, instead, deep learning packages define 
+computational graphs and use automatic differentiation algorithms (typically backpropagation) to compute gradients 
+progressively through the network using the chain rule. \\
+
+
+Let us define the following vector functions:
+%
+\begin{eqnarray}
+y_1 & = & \mathbf{f}_1(x_1, x_2) = e^{2x_2} + x_1 sin(3 x_2^2) \\
+y_2 & = & \mathbf{f}_2(x_1, x_2) = x_1 x_2 + \sigma(x_2),
+\end{eqnarray}
+%
+where $\sigma(\cdot)$ denotes the standard sigmoid function. This is equivalent to a network with two inputs 
+$\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}$ and two outputs 
+$\mathbf{y} = \begin{bmatrix} y_1 \\ y_2 \end{bmatrix} = \mathbf{f}(\mathbf{x})$ and a set of intermediate 
+layers (note that bold indicates vectors). 
+%
+\begin{itemize}
+\item[(a)] Draw a computational graph. Computational graph should be at the level of elemental mathematical operations (multiplication, square, sine, etc.) and constants/variables. 
+\item[(b)] Draw backpropagation graph, based on computational graph above. 
+\item[(c)] Compute the value of $\mathbf{f}(\mathbf{x})$ at $\mathbf{x} = \begin{pmatrix} 2 \\  1 \end{pmatrix}$ using forward propagation. Please do not just plug in numbers directly into Eq. (1) and Eq. (2), this is not the intent here.
+\item[(d)] At $\mathbf{x} = \begin{pmatrix} 2 \\  1 \end{pmatrix}$, compute Jacobian using forward mode auto-differentiation. Show all steps.
+\item[(e)] At $\mathbf{x} = \begin{pmatrix} 2 \\  1 \end{pmatrix}$, compute Jacobian using backward mode auto-differentiation. Show all steps.
+\end{itemize}
+%
+Remember that Jacobian is defined as $\frac{\partial \mathbf{f}}{\partial \mathbf{x}}$. 
+
+\vspace{0.1in}
+{\bf Note \#1:} The goal here is {\bf \underline{not}} the final result, it could be obtained easily by any symbolic differentiation package 
+(Mathematica, Matlab, etc.) and you will loose points if this is what you do. The goal is to show that you understand 
+how backpropagation actually works and can do this by hand. This will be a bit painful, but in fact that is part of the 
+point: ability of AutoDiff algorithms to do this automatically is a huge benefit. 
+
+\vspace{0.1in}
+{\bf Note \#2:} I am providing the LaTex template for the assignment. You are welcome to do this part directly in LaTex and hand in a PDF. 
+However, this is not required. I have had students turn in photos of pages where the math is done by hand. As long as it is legible, that's OK. 
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[Problem 2 (15 points)]
+
+Consider a neural network with N input units denoted by $\mathbf{x} \in \mathbb{R}^N$ vector, M output units denoted by $\mathbf{y} \in \mathbb{R}^M$ vector, and K hidden units denoted by $\mathbf{h} \in \mathbb{R}^K$ vector. The hidden layer has an activation function $\sigma$ (e.g., a sigmoid or ReLU).  The resulting equations that govern the behavior of this simple network are:
+
+\begin{eqnarray*}
+\mathbf{z} & = & \mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)}  \\
+\mathbf{h} & = & \sigma(\mathbf{z})  \\
+\mathbf{y} & = & \mathbf{W}^{(2)} \mathbf{h} + \mathbf{b}^{(2)}
+\end{eqnarray*}
+
+The loss function $\mathcal{L}$ involves an L2 error on prediction $\mathcal{E}$ plus a regularizer $\mathcal{R}$ as follows:
+ 
+\begin{eqnarray*}
+\mathcal{L} & = & \mathcal{E} + \mathcal{R}  \\
+\mathcal{R} & = &  \mathbf{r}^T \mathbf{h} \\
+\mathcal{E} & = & \frac{1}{2} || \mathbf{y} - \mathbf{s} ||^2
+\end{eqnarray*}
+ 
+where $\mathbf{r}$ and $\mathbf{s}$ are given (e.g., $\mathbf{s}$ is  a ground truth prediction for $\mathbf{x}$). 
+
+\begin{itemize}
+\item[(a)] Draw the computational graph relating $\mathbf{x}$, $\mathbf{z}$, $\mathbf{h}$,  $\mathbf{y}$,  $\mathcal{L}$, $\mathcal{E}$, $\mathcal{R}$. Note, in this case we expect nodes to be representing collections of values, not each neuron individually. 
+\item[(b)] Derive the backpropagation equations for computing $\frac{\partial \mathcal{L}}{\partial \mathbf{x}}$. Please use $\sigma'$ to denote the derivative of  the activation function. 
+\end{itemize}
+
+{\small {\bf  Credit:} Problem 2 is adopted from University of Toronto's CSC421/2516 Problem Set 1.}
+\end{homeworkProblem}
+
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 3
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}[Problem 3 (80 points)]
+
+The second half of the assignment requires Google Colab and is distributed as a notebook. All instructions are given
+in the notebook itself. The assignment does not require any libraries beyond vanilla Python. Once the assignment is done
+hand in both the written portion and the programming portion using {\tt Canvas}. When handing in programming assignment
+make sure you hand in all the code and the notebook contains the output of executed code. 
+
+\vspace{0.1in}
+Those who never used Python Jupyter, can find many tutorials online, including on YouTube, 
+
+~~~~~~~~~~~ e.g., \url{https://www.youtube.com/watch?v=HW29067qVWk}
+
+\noindent
+or contact TAs for help. 
+
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
